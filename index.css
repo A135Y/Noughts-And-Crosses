@@ -1,0 +1,15 @@
+body{
+color: orange;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-image: url(https://i.pinimg.com/736x/a0/30/d9/a030d95a5e084f39430d0a32297eb069.jpg);
+background-repeat: no-repeat;
+background-size: 100%;
+}
+
+h1{
+font-weight: bold;
+text-decoration: underline;
+text-align: center;
+}
+
+
