@@ -1,39 +1,64 @@
 body{
-color: orange;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-image: url(https://i.pinimg.com/736x/a0/30/d9/a030d95a5e084f39430d0a32297eb069.jpg);
-background-repeat: no-repeat;
-background-size: 100%;
-height:100vh; margin:0; 
-display:flex; 
-flex-direction:column;
+  color: orange;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url(https://i.pinimg.com/736x/a0/30/d9/a030d95a5e084f39430d0a32297eb069.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height:100vh; margin:0; 
+  display:flex; 
+  flex-direction:column;
 }
 main{
-height: 70%;
+  height: 70%;
 }
 
 h1{
-font-weight: bold;
-text-decoration: underline;
-text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: center;
 }
- #button{
+ 
+#button{
     display: flex;
     justify-content: space-around; 
- }
+}
 
- #start:hover{
-background-color: green;
- }
+#start:hover{
+    background-color: green;
+}
 
- #reset:hover{
+#reset:hover{
     background-color: red;
- }
+}
+ 
+table{
+   width: 100%;
+   display: flex;
+   padding-top: 1cm;
+   justify-content:center;
+} 
+
+td{
+    border: 2cm solid whitesmoke;
+   
+}
+
+tr {
+    background-color: whitesmoke; 
+    opacity: 10%;
+    border-left: 2ch;
+}
 
 footer{
-display: flex;
-justify-content: space-between;
-margin-top: auto;  
-padding: 0cm 9cm 3cm;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;  
+  padding: 0cm 9cm 3cm;
 
 }
+
+
+/* 
+opacity
+border-left
+border-right */
