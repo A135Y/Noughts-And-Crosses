@@ -15,6 +15,10 @@ h1{
   text-align: center;
 }
  
+#Whos-Turn{
+font-size: 30px;
+}
+
 #button{
     display: flex;
     justify-content: space-around; 
@@ -41,7 +45,7 @@ table{
     width: 150px;
     height: 150px;
     size: 20cm;
-    align-items: center;
+    padding-left: 1.5cm;
 }
 
 .right{
@@ -61,5 +65,6 @@ footer{
   display: flex;
   justify-content: space-between;
   margin-top: auto;  
-  padding: 0cm 9cm 3cm;
+  padding: 0cm 2cm 1cm;
+  font-size: 50px;
 }
