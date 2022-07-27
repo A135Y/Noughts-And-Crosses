@@ -14,9 +14,9 @@ h1{
   text-decoration: underline;
   text-align: center;
 }
- 
-#Whos-Turn{
-font-size: 30px;
+
+#whosturn{
+   font-size: 30px;
 }
 
 #button{
@@ -41,6 +41,7 @@ table{
    font-size: 150px;
 }  
 
+
 .block{
     width: 150px;
     height: 150px;
@@ -49,22 +50,30 @@ table{
 }
 
 .right{
-    border-right:5px solid orange;
+    border-right: 5px solid orange;
 }
 
 .bottom{
-    border-bottom:5px solid orange;
+    border-bottom: 5px solid orange;
 }
 
 .bottom-right{
-    border-right:5px solid orange;
-    border-bottom:5px solid orange;
+    border-right: 5px solid orange;
+    border-bottom: 5px solid orange;
 }
 
 footer{
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;  
-  padding: 0cm 2cm 1cm;
-  font-size: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;  
+    padding: 0cm 2cm 1cm;
+    font-size: 50px;
 }
+
+/* .X:hover::after{
+    content: 'X';
+} */
+
+/* .O:hover::after{
+    content: 'O';
+} */
