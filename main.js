@@ -2,42 +2,77 @@
 const start = document.getElementById('start');
 const reset = document.getElementById('reset');
 const whosturn = document.getElementById('whosturn');
-const block = document.getElementsByClassName('block');
-const player1 = document.getElementById('player1');
-const player2 = document.getElementById('player2');
-const tie = document.getElementById('tie');
-const td = document.getElementsByTagName('td');
+const blocks = document.querySelectorAll('.block');
+const player1 = 'X'; //to change players
+const player2 = 'O';
+let changeTurn = player1;
+const blockCount = Array(blocks.length); //creates an array of values for each block
 
 //Buttons Logic
 
 start.addEventListener('click', startGame)
-   
-function startGame () {
-whosturn.innerText = "Player 1's Turn"
+
+function startGame() {
+  whosturn.innerText = "Player 1's Turn"
+  start.disabled = true;
 }
 
-const blockSelectorX = document.querySelectorAll("td");
-for (let i = 0; i < blockSelectorX.length; i++) {
-  blockSelectorX[i].addEventListener("click", function() {
-    this.innerText = 'X'
-  });
+blocks.forEach((block) => block.addEventListener('click', addHover))
+
+function addHover (){
+  
+  blocks.forEach(block => {
+    block.classList.remove('X');
+    block.classList.remove('O')
+  })
+
+const hover = `${changeTurn.toLowerCase()}-hover`;
+
+blocks.forEach(block => {
+  if(block.innerText == ''){
+    block.classList.add(hover)
+  }
+});
 }
 
-const blockSelectorO = document.querySelectorAll("td");
-for (let i = 0; i < blockSelectorO.length; i++) {
-  blockSelectorO[i].addEventListener("click", function() {
-    this.innerText = 'O'
-  });
+addHover();
+
+blocks.forEach((block) => block.addEventListener('click', addVal))
+
+function addVal(val) {
+  const block = val.target;
+  const squareNumber = block.dataset.index;
+  if (block.innerText != '') {
+    return;
+  }
+
+  if (changeTurn === player1) {
+    block.innerText = player1;
+    blockCount[squareNumber - 1] = player1;
+    changeTurn = player2;
+    whosturn.innerText = "Player 2's Turn"
+  } else {
+    block.innerText = player2;
+    blockCount[squareNumber - 1] = player2;
+    changeTurn = player1;
+    whosturn.innerText = "Player 1's Turn"
+  }
+addHover();
 }
+
+
+
 
 reset.addEventListener('click', resetGame)
 
-function resetGame (b) {
-    whosturn.innerText = '';
+function resetGame(b) {
+  whosturn.innerText = '';
+  blocks.forEach((block) => block.innerText = '');
+  start.disabled = false;
 }
 
 
-//For each even click its Player 2's turn else player 1
+console.log(blocks);
 
 //Use window.alert() to show who won on the browser increment counter by one for the winner
 
