@@ -18,24 +18,30 @@ Lets Play Noughts & Crosses!
     <div id="whosturn"></div>
     <button id="reset">Reset</button>
     </div>
+    <div class="timer">
+      <h2>15</h2>
+    </div>
     <table id="table">
-        <tr>
+        <tr id="row-1">
           <td data-index="1" class="block bottom-right"></td>
           <td data-index="2" class="block bottom-right"></td>
           <td data-index="3" class="block bottom"></td>
         </tr>
-        <tr>
+        <tr id="row-2">
           <td data-index="4" class="block bottom-right"></td>
           <td data-index="5" class="block bottom-right"></td>
           <td data-index="6" class="block bottom"></td>
         </tr>
-        <tr>
+        <tr id="row-3">
           <td data-index="7" class="block right"></td>
           <td data-index="8" class="block right"></td>
           <td data-index="9" class="block"></td>
         </tr>
+        <div id="strike" class="strike"></div>
       </table>
-      
+      <div id="game-over-area" class="hidden">
+        <h2 id="game-over-text">Winner is X</h2>
+      </div>
     </main>
     <footer>
          <div id="player1">Your Score
@@ -44,8 +50,7 @@ Lets Play Noughts & Crosses!
          </div>
          <div id="player2"> My Score
          </div>
-
     </footer>
-    <script src = './main.js'></script>
+    <script src = './main.js' type="module"></script>
 </body>
 </html>

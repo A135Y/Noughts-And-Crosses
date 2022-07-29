@@ -33,20 +33,23 @@ h1{
 }
  
 table{
-   display: flex;
+   display: table;
    justify-content: center; 
+   height: 50%;
    width: 100%;
-   padding-top: 1cm;
+   padding-left: 10%;
+   padding-right: 10%;
    cursor: pointer;
-   font-size: 80px;
+   font-size: 120px;
 }  
 
 
 .block{
     width: 150px;
     height: 150px;
-    size: 20cm;
-    padding-left: 2.5cm;
+    size: 250cm;
+    padding-left: 4.1cm; 
+    position: relative;
 }
 
 .right{
@@ -62,6 +65,70 @@ table{
     border-bottom: 5px solid orange;
 }
 
+
+.strike{
+position: absolute;
+background-color: purple;
+}
+
+.strike-row-1{
+    width: 100%;
+    height: 4px;
+    top: 31.5%;
+}
+
+.strike-row-2{
+    width: 100%;
+    height: 4px;
+    top: 50%;
+ 
+}
+
+.strike-row-3{
+    height: 55%;
+    width: 100%;
+    height: 4px;
+    top: 70%;
+ 
+}
+
+.strike-column-1{
+    height: 55%;
+    width: 4px;
+    left: 22.5%;
+ 
+}
+
+.strike-column-2{
+    height: 55%;
+    width: 4px;
+    left: 49.5%;
+ 
+}
+
+.strike-column-3{
+    height: 55%;
+    width: 4px;
+    left: 76%;
+ 
+}
+
+.strike-diagonal-1{
+    width: 90%;
+    height: 4px;
+    top: 50%;
+    left: 5%;
+    transform: skewY(21deg);
+}
+
+.strike-diagonal-2{
+    width: 90%;
+    height: 4px;
+    top: 50%;
+    right: 5%;
+    transform: skewY(-21deg);
+}
+
 footer{
     display: flex;
     justify-content: space-between;
@@ -70,10 +137,50 @@ footer{
     font-size: 30px;
 }
 
-  .X:hover::after{
+.X-hover:hover::after{
     content: 'X';
+    opacity: 0.4;
 } 
 
-.O:hover::after{
+.O-hover:hover::after{
     content: 'O';
+    opacity: 0.4;
 }   
+
+
+#game-over-area {
+  text-align: center;
+  border: currentColor 8px solid;
+  padding: 50px;
+  width: 50%;
+  margin-top: 50px;
+}
+
+h2 {
+  color: currentColor;
+  font-size: 2em;
+  margin-top: 0px;
+}
+
+button {
+  background-color: transparent;
+  color: currentColor;
+  border: currentColor 1px solid;
+  padding: 10px;
+  font-size: 1.5em;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.timer{
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    padding-left: 50px;
+}
