@@ -1,9 +1,7 @@
 const blocks = document.querySelectorAll(".blocks");
 const PLAYER1 = "X";
 const PLAYER2 = "O";
-let turn = PLAYER1;
 const tableState = Array(blocks.length);
-tableState.fill(null);
 const start = document.getElementById('start');
 const reset = document.getElementById('reset');
 const whosturn = document.getElementById('whosturn');
@@ -13,17 +11,47 @@ const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
 const Player_X = document.getElementById('Payer-X');
 const Player_O = document.getElementById('Payer-O');
+const countDown = document.getElementById("countDown");
+let turn = PLAYER1;
+tableState.fill(null);
+let timeLeft = 5;
+let timer;
 
-
-start.addEventListener('click', startGame)
+start.addEventListener('click', startGame);
+start.addEventListener("click", countDown);
 
 function startGame() {
   whosturn.innerText = "Player X's Turn"
   start.disabled = true;
 }
 
+function countdown () {
+  if (timeLeft) {
+    countDown.innerText = timeLeft;
+    timeLeft--;
+    timer = setTimeout(countdown, 1000);
+  } else {
+    countDown.innerHTML = "Turn Forfeited";
+    timer = undefined;
+  }
+}
+
+function takeMove() {
+  // timer will only be undefined if the game is not started
+  if (typeof(timer) === "undefined") {
+    countDown.innerText = timeLeft + ' Seconds Left'
+    timeLeft = 5;
+    countdown();
+  } else {
+    clearTimeout(timer);
+    timeLeft = 5;
+    countdown();
+  }
+}
+
 
 blocks.forEach((block) => block.addEventListener("click", blockClick));
+blocks.forEach((block) => block.addEventListener("click", takeMove));
 
 function setHoverText() {
   blocks.forEach((block) => {
@@ -53,16 +81,19 @@ function blockClick(event) {
     return;
   }
 
+  //add a turn switch here if timeout occurs fix clearTimeout at end of game.
+
+
   if (turn === PLAYER1) {
     block.innerText = PLAYER1;
     tableState[blockNumber - 1] = PLAYER1;
     turn = PLAYER2;
-    whosturn.innerText = "Player O's Turn"
+    whosturn.innerText = "Player O's Turn";
   } else {
     block.innerText = PLAYER2;
     tableState[blockNumber - 1] = PLAYER2;
     turn = PLAYER1;
-    whosturn.innerText = "Player X's Turn"
+    whosturn.innerText = "Player X's Turn";
   }
   setHoverText();
   checkWinner();
@@ -83,6 +114,7 @@ function checkWinner() {
     ) {
       strike.classList.add(strikeClass);
       gameOverScreen(blockValue1);
+      clearTimeout(timer);
       return;
     }
   }
@@ -91,6 +123,7 @@ function checkWinner() {
   const allblockFilledIn = tableState.every((block) => block !== null);
   if (allblockFilledIn) {
     whosturn.innerText = '';
+    clearTimeout(timer);
     gameOverScreen(null);
   }
 }
@@ -99,7 +132,7 @@ function gameOverScreen(winnerText) {
   let text = "It's A Draw!";
   if (winnerText != null) {
     text = `The Winner Is Player ${winnerText}!`;
-    whosturn.innerText = ''
+    whosturn.innerText = '';
   }
   gameOverArea.className = "visible";
   gameOverText.innerText = text;
@@ -116,6 +149,8 @@ function resetGame(b) {
   start.disabled = false;
   whosturn.innerText = '';
   setHoverText();
+  countDown.innerText = '';
+  clearTimeout(timer);
 }
 
 const winningCombinations = [
@@ -128,3 +163,4 @@ const winningCombinations = [
   { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
   { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
 ];
+

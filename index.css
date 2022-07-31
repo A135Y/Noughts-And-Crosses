@@ -90,6 +90,8 @@ body {
   
   
   button {
+    display: flex;
+    justify-content: space-between;
     background-color: transparent;
     color: currentColor;
     border: currentColor 1px solid;
@@ -103,7 +105,7 @@ body {
   
   .tab{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around; 
   }
   
   #start:hover{
@@ -116,6 +118,8 @@ body {
   
   
   h2 {
+    display: flex;
+    justify-content: space-between;
     color: currentColor;
     font-size: 2em;
     margin-top: 0px;
@@ -143,4 +147,7 @@ body {
     display: flex;
     justify-content: center;
   }
-  
+
+  #countDown{
+    font-size: 20px;
+  }

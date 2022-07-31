@@ -11,12 +11,11 @@
   <body>
     <h1>Let's Play Noughts & Crosses</h1>
     <div class="tab">
-      <div id="Player-X">Player X</div>
       <button id="start">Start</button>
       <div id="whosturn"></div>
       <button id="reset">Reset</button>
-      <div id="Player-O">Player O</div>
     </div>
+    <div id="countDown"></div>
     <div id="table">
       <div data-index="1" class="blocks right-border bottom-border"></div>
       <div data-index="2" class="blocks right-border bottom-border"></div>
@@ -30,7 +29,8 @@
       <div id="strike" class="strike"></div>
     </div>
     <div id="game-over-area" class="hidden">
-      <h2 id="game-over-text">The Winner is X</h2>
+      <h2 id="game-over-text">The Winner is X
+      </h2>
     </div>
     <script src="main.js"></script>
   </body>
