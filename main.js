@@ -7,18 +7,18 @@ tableState.fill(null);
 const start = document.getElementById('start');
 const reset = document.getElementById('reset');
 const whosturn = document.getElementById('whosturn');
-
-//Elements
 const strike = document.getElementById("strike");
 const gameOverArea = document.getElementById("game-over-area");
 const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
+const Player_X = document.getElementById('Payer-X');
+const Player_O = document.getElementById('Payer-O');
 
 
 start.addEventListener('click', startGame)
 
 function startGame() {
-  whosturn.innerText = "Player 1's Turn"
+  whosturn.innerText = "Player X's Turn"
   start.disabled = true;
 }
 
@@ -26,7 +26,6 @@ function startGame() {
 blocks.forEach((block) => block.addEventListener("click", blockClick));
 
 function setHoverText() {
-  //remove all hover text
   blocks.forEach((block) => {
     block.classList.remove("x-hover");
     block.classList.remove("o-hover");
@@ -58,10 +57,12 @@ function blockClick(event) {
     block.innerText = PLAYER1;
     tableState[blockNumber - 1] = PLAYER1;
     turn = PLAYER2;
+    whosturn.innerText = "Player O's Turn"
   } else {
     block.innerText = PLAYER2;
     tableState[blockNumber - 1] = PLAYER2;
     turn = PLAYER1;
+    whosturn.innerText = "Player X's Turn"
   }
   setHoverText();
   checkWinner();
@@ -70,7 +71,6 @@ function blockClick(event) {
 function checkWinner() {
   //Check for a winner
   for (const winningCombination of winningCombinations) {
-    //Object Destructuring
     const { combo, strikeClass } = winningCombination;
     const blockValue1 = tableState[combo[0] - 1];
     const blockValue2 = tableState[combo[1] - 1];
@@ -90,18 +90,19 @@ function checkWinner() {
   //Check for a draw
   const allblockFilledIn = tableState.every((block) => block !== null);
   if (allblockFilledIn) {
+    whosturn.innerText = '';
     gameOverScreen(null);
   }
 }
 
 function gameOverScreen(winnerText) {
-  let text = "Draw!";
+  let text = "It's A Draw!";
   if (winnerText != null) {
-    text = `Winner is ${winnerText}!`;
+    text = `The Winner Is Player ${winnerText}!`;
+    whosturn.innerText = ''
   }
   gameOverArea.className = "visible";
   gameOverText.innerText = text;
-  gameOverSound.play();
 }
 
 reset.addEventListener('click', resetGame)
@@ -118,15 +119,12 @@ function resetGame(b) {
 }
 
 const winningCombinations = [
-  //rows
   { combo: [1, 2, 3], strikeClass: "strike-row-1" },
   { combo: [4, 5, 6], strikeClass: "strike-row-2" },
   { combo: [7, 8, 9], strikeClass: "strike-row-3" },
-  //columns
   { combo: [1, 4, 7], strikeClass: "strike-column-1" },
   { combo: [2, 5, 8], strikeClass: "strike-column-2" },
   { combo: [3, 6, 9], strikeClass: "strike-column-3" },
-  //diagonals
   { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
   { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
 ];
