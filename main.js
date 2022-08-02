@@ -40,9 +40,7 @@ blocks.forEach((block) => block.addEventListener("click", takeMove));
 
 function takeMove(event) {
   // timer will only be undefined if the game is not started
-  let block = event.target;
-  const blockNumber = block.dataset.index;
-  if(block.innerText == null){
+
   if (typeof (timer) === "undefined") {
     countDown.innerText = timeLeft;
     timeLeft = 3;
@@ -52,7 +50,7 @@ function takeMove(event) {
     timeLeft = 3;
     countdown();
   }
-}
+
  if (countDown.innerText == 'Turn Forfeited' && turn === PLAYERX) {
     block.innerText = PLAYERO;
     tableState[blockNumber - 1] = PLAYERO;
