@@ -7,9 +7,9 @@ body {
     color: orange;
     background-repeat: no-repeat;
     background-size: 100%;
-  }
-  
-  #table {
+}
+
+#table {
     font-size: 150px;
     display: grid;
     justify-content: center;
@@ -17,79 +17,86 @@ body {
     grid-template-rows: 200px 200px 200px;
     cursor: pointer;
     position: relative;
-  
-  }
-  
-  .blocks {
+
+}
+
+.blocks {
     display: flex;
     justify-content: center;
-  }
-  
+}
 
-  .right-border {
+
+.right-border {
     border-right: 0.05em solid orange;
-  }
-  
-  .bottom-border {
+}
+
+.bottom-border {
     border-bottom: 0.05em solid orange;
-  }
-  
-  .strike {
+}
+
+.strike {
     position: absolute;
     background-color: darkred;
-  }
-  
-  .strike-row-1 {
+}
+
+.strike-row-1 {
     width: 100%;
-    height: 8px;
+    height: 10px;
     top: 15%;
-  }
-  .strike-row-2 {
+}
+
+.strike-row-2 {
     width: 100%;
-    height: 8px;
+    height: 10px;
     top: 48%;
-  }
-  .strike-row-3 {
+}
+
+.strike-row-3 {
     width: 100%;
-    height: 8px;
+    height: 10px;
     top: 81.5%;
-  }
-  .strike-column-1 {
+}
+
+.strike-column-1 {
     height: 100%;
-    width: 8px;
+    width: 10px;
     left: 16%;
-  }
-  .strike-column-2 {
+}
+
+.strike-column-2 {
     height: 100%;
-    width: 8px;
+    width: 10px;
     left: 49.2%;
-  }
-  .strike-column-3 {
+}
+
+.strike-column-3 {
     height: 100%;
-    width: 8px;
+    width: 10px;
     left: 83%;
-  }
-  .strike-diagonal-1 {
+}
+
+.strike-diagonal-1 {
     width: 90%;
-    height: 8px;
+    height: 10px;
     top: 48%;
     left: 5%;
     transform: skewY(30deg);
-  }
-  .strike-diagonal-2 {
+}
+
+.strike-diagonal-2 {
     width: 90%;
-    height: 8px;
+    height: 10px;
     top: 48%;
     left: 5%;
     transform: skewY(-30deg);
-  }
-  
-  h1 {
+}
+
+h1 {
     color: currentColor;
-  }
-  
-  
-  button {
+}
+
+
+button {
     display: flex;
     justify-content: space-between;
     background-color: transparent;
@@ -97,57 +104,66 @@ body {
     border: currentColor 1px solid;
     padding: 10px;
     font-size: 1.5em;
-  }
+}
 
-#Player-X, #Player-O {
+#Player-X,
+#Player-O {
     font-size: 1.5em;
 }
-  
-  .tab{
+
+.tab {
     display: flex;
-    justify-content: space-around; 
-  }
-  
-  #start:hover{
+    justify-content: space-around;
+}
+
+
+
+#whosturn {
+    font-size: 30px;
+    padding-left: 8cm;
+    padding-right: 8cm;
+}
+
+#start:hover {
     background-color: green;
-  }
-  
-  #reset:hover{
+}
+
+#reset:hover {
     background-color: red;
-  }
-  
-  
-  h2 {
+}
+
+
+h2 {
     display: flex;
     justify-content: space-between;
     color: currentColor;
     font-size: 2em;
     margin-top: 0px;
-  }
-  
-  
-  .hidden {
+}
+
+
+.hidden {
     display: none;
-  }
-  
-  .visible {
+}
+
+.visible {
     display: block;
-  }
-  
-  .x-hover:hover::after {
+}
+
+.x-hover:hover::after {
     content: "X";
     opacity: 0.4;
     display: flex;
     justify-content: center;
-  }
-  
-  .o-hover:hover::after {
+}
+
+.o-hover:hover::after {
     content: "O";
     opacity: 0.4;
     display: flex;
     justify-content: center;
-  }
+}
 
-  #countDown{
+#countDown {
     font-size: 20px;
-  }
+}

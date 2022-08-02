@@ -1,6 +1,7 @@
+//variables
 const blocks = document.querySelectorAll(".blocks");
-const PLAYER1 = "X";
-const PLAYER2 = "O";
+const PLAYERX = "X";
+const PLAYERO = "O";
 const tableState = Array(blocks.length);
 const start = document.getElementById('start');
 const reset = document.getElementById('reset');
@@ -9,49 +10,69 @@ const strike = document.getElementById("strike");
 const gameOverArea = document.getElementById("game-over-area");
 const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
-const Player_X = document.getElementById('Payer-X');
-const Player_O = document.getElementById('Payer-O');
 const countDown = document.getElementById("countDown");
-let turn = PLAYER1;
+let turn = PLAYERX;
 tableState.fill(null);
-let timeLeft = 5;
+let timeLeft = 3;
 let timer;
 
 start.addEventListener('click', startGame);
-start.addEventListener("click", countDown);
+start.addEventListener("click", takeMove); //Timer from start click
 
 function startGame() {
   whosturn.innerText = "Player X's Turn"
   start.disabled = true;
 }
 
-function countdown () {
+
+function countdown() {
   if (timeLeft) {
-    countDown.innerText = timeLeft;
+    countDown.innerText = timeLeft + ' Seconds Left';
     timeLeft--;
     timer = setTimeout(countdown, 1000);
   } else {
-    countDown.innerHTML = "Turn Forfeited";
+    countDown.innerText = "Turn Forfeited";
     timer = undefined;
   }
 }
 
-function takeMove() {
+blocks.forEach((block) => block.addEventListener("click", takeMove));
+
+function takeMove(event) {
   // timer will only be undefined if the game is not started
-  if (typeof(timer) === "undefined") {
-    countDown.innerText = timeLeft + ' Seconds Left'
-    timeLeft = 5;
+  let block = event.target;
+  const blockNumber = block.dataset.index;
+  if(block.innerText == null){
+  if (typeof (timer) === "undefined") {
+    countDown.innerText = timeLeft;
+    timeLeft = 3;
     countdown();
   } else {
     clearTimeout(timer);
-    timeLeft = 5;
+    timeLeft = 3;
     countdown();
   }
+}
+ if (countDown.innerText == 'Turn Forfeited' && turn === PLAYERX) {
+    block.innerText = PLAYERO;
+    tableState[blockNumber - 1] = PLAYERO;
+    turn = PLAYERX;
+    whosturn.innerText = "Player O's Turn";
+  }
+  
+  else if (countDown.innerText == 'Turn Forfeited' && turn === PLAYERO) {
+    block.innerText = PLAYERX;
+    tableState[blockNumber - 1] = PLAYERX;
+    turn = PLAYERO;
+    whosturn.innerText = "Player X's Turn";
+  }
+
+return
 }
 
 
 blocks.forEach((block) => block.addEventListener("click", blockClick));
-blocks.forEach((block) => block.addEventListener("click", takeMove));
+
 
 function setHoverText() {
   blocks.forEach((block) => {
@@ -68,6 +89,8 @@ function setHoverText() {
   });
 }
 
+
+
 setHoverText();
 
 function blockClick(event) {
@@ -80,24 +103,33 @@ function blockClick(event) {
   if (block.innerText != "") {
     return;
   }
-
-  //add a turn switch here if timeout occurs fix clearTimeout at end of game.
-
-
-  if (turn === PLAYER1) {
-    block.innerText = PLAYER1;
-    tableState[blockNumber - 1] = PLAYER1;
-    turn = PLAYER2;
+  if (turn === PLAYERX) {
+    block.innerText = PLAYERX;
+    tableState[blockNumber - 1] = PLAYERX;
+    turn = PLAYERO;
     whosturn.innerText = "Player O's Turn";
   } else {
-    block.innerText = PLAYER2;
-    tableState[blockNumber - 1] = PLAYER2;
-    turn = PLAYER1;
+    block.innerText = PLAYERO;
+    tableState[blockNumber - 1] = PLAYERO;
+    turn = PLAYERX;
     whosturn.innerText = "Player X's Turn";
   }
+
   setHoverText();
   checkWinner();
 }
+
+const winningCombinations = [
+  { combo: [1, 2, 3], strikeClass: "strike-row-1" },
+  { combo: [4, 5, 6], strikeClass: "strike-row-2" },
+  { combo: [7, 8, 9], strikeClass: "strike-row-3" },
+  { combo: [1, 4, 7], strikeClass: "strike-column-1" },
+  { combo: [2, 5, 8], strikeClass: "strike-column-2" },
+  { combo: [3, 6, 9], strikeClass: "strike-column-3" },
+  { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
+  { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
+];
+
 
 function checkWinner() {
   //Check for a winner
@@ -114,7 +146,6 @@ function checkWinner() {
     ) {
       strike.classList.add(strikeClass);
       gameOverScreen(blockValue1);
-      clearTimeout(timer);
       return;
     }
   }
@@ -134,6 +165,7 @@ function gameOverScreen(winnerText) {
     text = `The Winner Is Player ${winnerText}!`;
     whosturn.innerText = '';
   }
+  countDown.innerText = '';
   gameOverArea.className = "visible";
   gameOverText.innerText = text;
 }
@@ -145,22 +177,10 @@ function resetGame(b) {
   gameOverArea.className = "hidden";
   blocks.forEach((block) => (block.innerText = ""));
   tableState.fill(null);
-  turn = PLAYER1;
+  turn = PLAYERX;
   start.disabled = false;
   whosturn.innerText = '';
-  setHoverText();
   countDown.innerText = '';
   clearTimeout(timer);
+  setHoverText();
 }
-
-const winningCombinations = [
-  { combo: [1, 2, 3], strikeClass: "strike-row-1" },
-  { combo: [4, 5, 6], strikeClass: "strike-row-2" },
-  { combo: [7, 8, 9], strikeClass: "strike-row-3" },
-  { combo: [1, 4, 7], strikeClass: "strike-column-1" },
-  { combo: [2, 5, 8], strikeClass: "strike-column-2" },
-  { combo: [3, 6, 9], strikeClass: "strike-column-3" },
-  { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
-  { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
-];
-
